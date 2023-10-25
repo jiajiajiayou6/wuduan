@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 1100px;
+            height: 450px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow:
+                0 1px 1px hsl(0deg 0% 0% / 0.075),
+                0 2px 2px hsl(0deg 0% 0% / 0.075),
+                0 4px 4px hsl(0deg 0% 0% / 0.075),
+                0 8px 8px hsl(0deg 0% 0% / 0.075),
+                0 16px 16px hsl(0deg 0% 0% / 0.075);
+            border: 1px solid rgb(240, 240, 240);
+            border-radius: 8px;
+        }
+
+        .boxOne {
+            width: 100%;
+            height: 60px;
+            background-color: rgb(223, 223, 223);
+            display: flex;
+            justify-content: space-between;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .boxOne div {
+            width: 33%;
+            height: 45px;
+            line-height: 45px;
+            background-color: rgb(202, 222, 232);
+            margin-top: 7.5px;
+            text-align: center;
+        }
+
+        .boxTwo {
+            width: 100%;
+            height: 390px;
+            background-color: rgb(223, 223, 223);
+            /* background-image: url("https://p0.ssl.qhimgs1.com/sdr/400__/t010bda408f7dcc3ed0.jpg"); */
+            background-size: 100%;
+            border-radius: 0 0 8px 8px;
+            border: 1px solid rgba(255, 255, 255);
+        }
+
+        .boxTwo div {
+            width: 95%;
+            margin: auto;
+            line-height: 60px;
+            height: 350px;
+            background-color: rgba(255, 255, 255, 0.797);
+            margin-top: 20px;
+            border-radius: 5px;
+            /* text-indent: 2em; */
+        }
+
+        li {
+            list-style: none;
+            width: 100%;
+            height: 55px;
+            line-height: 55px
+        }
+
+        .boxTwo div .ul1 {
+            width: 50%;
+            height: 350px;
+            float: left;
+
+        }
+
+        .boxTwo div .ul2 {
+            width: 50%;
+            height: 350px;
+            float: right;
+        }
+
+        .span1 {
+            display: inline-block;
+            margin-left: 10px;
+            width: 330px;
+            float: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .span1 {
+            display: inline-block;
+            margin-left: 10px;
+            width: 200px;
+            float: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .span3 {
+            float: left;
+        }
+
+        .span2 {
+            display: inline-block;
+            width: 100px;
+            margin-right: 10px;
+            color: rgb(181, 181, 181);
+            float: right;
+        }
+
+        .span4 {
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+            float: right;
+        }
+
+        .dian {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .a {
+            background-color: rgb(17, 175, 192) !important;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="boxOne">
+            <div @click="handleClick1()" :class="this.off===1 ? 'a' : ''">最近发布</div>
+            <div @click="handleClick2()" :class="this.off===2 ? 'a' : ''">常见问题</div>
+            <div @click="handleClick3()" :class="this.off===3 ? 'a' : ''">信用信息</div>
+        </div>
+        <div class="boxTwo">
+            <div v-if="off == 1">
+                <ul class="ul1">
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">公告</span>
+                        <span class="span2">2023-06-05</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">公告</span>
+                        <span class="span2">2023-12-22</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">公告</span>
+                        <span class="span2">2023-12-22</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">中国铁路呼和浩特集团有限公司关于2023年10月25日至1...</span>
+                        <span class="span2">2023-10-23</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">中国铁路呼和浩特集团有限公司关于2023年10月25日至1...</span>
+                        <span class="span2">2023-10-20</span>
+                    </li>
+                </ul>
+                <ul class="ul2">
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">铁道旅客禁止，限制携带和托运物品目录</span>
+                        <span class="span2">2023-12-31</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">候补购票操作说明</span>
+                        <span class="span2">2023-02-09</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">关于调整互联网、电话订票起售时间的公告</span>
+                        <span class="span2">2023-09-27</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">中国铁路上海局集团有限公司关于2023年10月20日-2023年...</span>
+                        <span class="span2">2023-10-20</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">中国铁路成都局集团有限公司关于2023年10月22日至29日...</span>
+                        <span class="span2">2023-10-20</span>
+                    </li>
+                </ul>
+            </div>
+            <div v-if="off == 2">
+                <ul class="ul1">
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">实名制车票</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">互联网购票</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">随身携带品</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">丢失购票时使用的有效身份证件</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">广深港跨境列车</span>
+                    </li>
+                </ul>
+                <ul class="ul2">
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">售票窗口购票</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">互联网退票</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">进出站</span>
+                    </li>
+                    <li>
+                        <span class="span3">🔹</span>
+                        <span class="span1">使用居民身份证直接检票乘车</span>
+                    </li>
+                </ul>
+            </div>
+            <div v-if="off == 3">
+                <ul class="ul1">
+                    <li style="border-bottom: 1.8px solid gray;width: 80%;margin: auto;text-align: center;">
+                        🚅失信已执行人(自然人)公示
+                    </li>
+                    <li>
+                        <img style="margin-top: 50px;margin-left: 190px;"
+                            src="https://www.12306.cn/index/images/empty.png" alt="" srcset="">
+                    </li>
+                    <li style="width: 80%;margin-top: 80px;text-align: center;color: gray;margin-left: 35px;">暂无公式数据
+                    </li>
+                </ul>
+                <ul class="ul2">
+                    <li style="border-bottom: 1.8px solid gray;width: 80%;margin: auto;text-align: center;">
+                        🚅失信已执行人(自然人)公布
+                    </li>
+                    <li style="border-bottom: 1px solid gray;width: 80%;margin: auto;">
+                        <span class="span3 dian">🔹</span>
+                        <span class="span5">刘红琴</span>
+                        <span class="span4">360502********1622</span>
+                    </li>
+                    <li style="border-bottom: 1px solid gray;width: 80%;margin: auto;">
+                        <span class="span3 dian">🔹</span>
+                        <span class="span5">姚林康</span>
+                        <span class="span4">110224********0097</span>
+                    </li>
+                    <li style="border-bottom: 1px solid gray;width: 80%;margin: auto;">
+                        <span class="span3 dian">🔹</span>
+                        <span class="span5">黄立山</span>
+                        <span class="span4">232301********2537</span>
+                    </li>
+                    <li style="border-bottom: 1px solid gray;width: 80%;margin: auto;">
+                        <span class="span3 dian">🔹</span>
+                        <span class="span5">伍兵</span>
+                        <span class="span4">342622********6459</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                off: 1,
+            },
+            methods: {
+                handleClick1() {
+                    this.off = 1;
+                },
+                handleClick2() {
+                    this.off = 2;
+                },
+                handleClick3() {
+                    this.off = 3;
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

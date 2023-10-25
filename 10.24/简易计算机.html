@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../common/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        button {
+            padding: 3px 15px;
+
+        }
+
+        #box {
+            width: 500px;
+            height: 300px;
+            margin-left: 100px;
+        }
+
+        input {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <br>
+        <input type="text" v-model="numberOne" name="" id="">
+        <br>
+        <input type="text" v-model="symbol" name="" id="">
+        <br>
+        <input type="text" v-model="numberTwo" name="" id="">
+        <br>
+        <button @click="change">=</button>
+        <input type="text" v-model="result" name="" id="">
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                msg: "8754",
+                numberOne: "",
+                symbol: "",
+                numberTwo: "",
+                result: "",
+            },
+            methods: {
+                change() {
+                    switch (this.symbol) {
+                        case "+":
+                            Number(this.result = this.numberOne * 1 + this.numberTwo * 1)
+                            break;
+                        case "-":
+                            Number(this.result = this.numberOne - this.numberTwo)
+                            break;
+                        case "*":
+                            Number(this.result = this.numberOne * this.numberTwo)
+                            break;
+                        case "/":
+                            Number(this.result = this.numberOne / this.numberTwo)
+                            break;
+                        default:
+                            alert("运算符号有误")
+                            break;
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

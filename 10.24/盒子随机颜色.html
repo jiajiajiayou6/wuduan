@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../common/vue.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #box div {
+            width: 200px;
+            height: 200px;
+            margin-top: 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div :style="color[Math.floor(Math.random()*(13-0+1)+0)]"></div>
+        <div :style="color[Math.floor(Math.random()*(13-0+1)+0)]"></div>
+        <div :style="color[Math.floor(Math.random()*(13-0+1)+0)]"></div>
+        <div :style="color[Math.floor(Math.random()*(13-0+1)+0)]"></div>
+        <div :style="color[Math.floor(Math.random()*(13-0+1)+0)]"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                color: [
+                    "background-image:linear-gradient(0deg,#a18cd1 0%, #fbc2eb 100%)",
+                    "background-image:linear-gradient(0deg,#fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)",
+                    "background-image:linear-gradient(120deg,#a1c4fd 0%, #c2e9fb 100%)",
+                    "background-image:linear-gradient(0deg,#cfd9df 0%, #e2ebf0 100%)",
+                    "background-image:linear-gradient(135deg,#f5f7fa 0%, #c3cfe2 100%)",
+                    "background-image:linear-gradient(0deg,#feada6 0%, #f5efef 100%)",
+                    "background-image:linear-gradient(0deg,#c1dfc4 0%, #deecdd 100%)",
+                    "background-image:linear-gradient(45deg,#93a5cf 0%, #e4efe9 100%)",
+                    "background-image:linear-gradient(0deg,#bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%)",
+                    "background-image:linear-gradient(-20deg,#616161 0%, #9bc5c3 100%)",
+                    "background-image:linear-gradient(-225deg,#7085B6 0%, #87A7D9 50%, #DEF3F8 100%)",
+                    "background-image:linear-gradient(-225deg,#69EACB 0%, #EACCF8 48%, #6654F1 100%)",
+                    "background-image:linear-gradient(-225deg,#65379B 0%, #886AEA 53%, #6457C6 100%)",
+                    "background-image:linear-gradient(-225deg,#FFE29F 0%, #FFA99F 48%, #FF719A 100%)",
+                ]
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+<!-- 日报
+今日学习:vue指令
+今日任务:已完成
+今日问题:无 -->
