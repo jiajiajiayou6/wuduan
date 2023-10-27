@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <link rel="stylesheet" href="../common/layui/css/layui.css">
+    <script src="../common/layui/layui.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #box {
+            width: 90%;
+            height: 600px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .ulOne {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid gray;
+            background: #f3f3f3;
+            font-size: 12px;
+            color: rgb(75, 75, 75);
+        }
+
+        .ulTwo {
+            width: 100%;
+            height: 550px;
+        }
+
+        .sp1 {
+            margin-left: 10px;
+        }
+
+        .sp2 {
+            margin-left: 120px;
+        }
+
+        .sp3 {
+            margin-left: 500px;
+        }
+
+        .sp4 {
+            margin-left: 120px;
+        }
+
+        .sp5 {
+            margin-left: 180px;
+        }
+
+        .sp6 {
+            margin-left: 120px;
+        }
+
+        .ulTwo li {
+            border: 1px solid #f1f1f1;
+            border-top: none;
+        }
+
+        .item-header {
+            height: 30px;
+            line-height: 30px;
+            border: 2px solid #f1f1f1;
+            border-top: none;
+            background: #fff;
+        }
+
+        .item-item {
+            position: relative;
+            border: 1px solid #f1f1f1;
+            height: 150px;
+            line-height: 20px;
+            background: #fff;
+            padding: 0 0 1px 10px;
+            clear: both;
+            display: flex;
+        }
+
+        .a {
+            position: relative;
+            border: 1px solid #f1f1f1;
+            height: 150px;
+            line-height: 20px;
+            background: #FFF4E8;
+            padding: 0 0 1px 10px;
+            clear: both;
+            display: flex;
+        }
+
+        .item-from {}
+
+        .product-extra {
+            padding: 20px 0 1px 10px;
+        }
+
+        .item-line {
+            width: 280px;
+            height: 60px;
+            line-height: 30px;
+            margin-top: 20px;
+            margin-left: 35px;
+            word-wrap: break-word;
+            font-size: 12px;
+        }
+
+        .item-line5 {
+            width: 170px;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 20px;
+            margin-left: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 12px !important;
+        }
+
+        .item-line1 {
+            margin-top: 20px;
+            margin-left: 55px;
+        }
+
+        .item-line2 {
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 20px;
+            margin-left: 115px;
+            display: flex;
+        }
+
+        .item-line4 {
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 20px;
+            margin-left: 85px;
+            display: flex;
+        }
+
+        .item-line4 button {
+            padding: 2px 4px;
+        }
+
+        .item-line3 {
+            margin-top: 20px;
+            margin-left: 120px;
+            color: #878787;
+            font-size: 12px;
+        }
+
+        .inp1 {
+            width: 30px;
+            text-align: center;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .se:hover {
+            color: red;
+        }
+
+        .jshm {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            margin: auto;
+            z-index: 2;
+            margin-top: 30px;
+            border: 1px solid #e2e3e2;
+        }
+
+        .jshm a {
+            line-height: 50px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .jshm input[type="checkbox"] {
+            float: left;
+            margin-top: 18px;
+            line-height: 50px;
+            margin-left: 20px;
+        }
+
+        .jshm a:nth-child(2) {
+            margin-left: 0;
+            line-height: 50px;
+        }
+
+        .jshm a:nth-child(5) {
+            font-weight: bold;
+            color: #81776e;
+            line-height: 50px;
+        }
+
+        .jshm span a {
+            margin-left: 0;
+            line-height: 50px;
+        }
+
+        .jshm span:nth-child(6) {
+            position: absolute;
+            margin-left: 400px;
+            line-height: 50px;
+            margin-top: -9px;
+            font-size: 13px;
+        }
+
+        .jshm span:nth-child(7) {
+            position: absolute;
+            margin-left: 540px;
+            line-height: 50px;
+            margin-top: -10px;
+            font-size: 13px;
+        }
+
+        .jshm span:nth-child(7) a {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 50px;
+            color: red;
+        }
+
+        .jshm div {
+            width: 90px;
+            height: 100%;
+            background-color: red;
+            color: #fff;
+            float: right;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul class="ulOne">
+            <li>
+                <span class="sp1"><input @click="changes1()" :checked="this.check" type="checkbox" name="" id="">
+                    全选</span>
+                <span class="sp2"> 商品</span>
+                <span class="sp3"> 单价</span>
+                <span class="sp4"> 数量</span>
+                <span class="sp5"> 小计</span>
+                <span class="sp5"> 操作</span>
+            </li>
+        </ul>
+        <ul class="ulTwo">
+            <li style="margin-top: 10px;" v-for="(item,index) in arr" :key="index">
+                <div class="item-header">
+                    <input @click="change(index)" :checked="item.quan" class="sp1" type="checkbox" name="" id="">
+                    <span style="margin-left: 5px;font-size: 12px;" class="se">{{item.Flagshipstore}}</span>
+                </div>
+                <div :class="item.che===true ? 'a' : 'item-item'">
+                    <div class="item-from" style="margin-top: 20px;">
+                        <input @click="change(index)" :checked="item.che" type="checkbox" name="" id="">
+                    </div>
+                    <div class="product-extra">
+                        <img :src="item.img" alt="">
+                    </div>
+                    <div class="item-line se">{{item.name}}</div>
+                    <div class="item-line5">{{item.title}}</div>
+                    <div class="item-line1">{{item.unitPrice}}</div>
+                    <div class="item-line4">
+                        <button @click="offFun(index)">-</button>
+                        <input class="inp1" type="text" name="" disabled id="" v-model="item.number">
+                        <button @click="addFun(index)">+</button>
+                    </div>
+                    <div class="item-line2">￥{{item.he}}</div>
+                    <div class="item-line3">
+                        <div class="se" @click="deleted(index)">删除</div>
+                        <div class="se">移入关注</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="jshm">
+            <input @click="changes1()" :checked="this.check" type="checkbox">
+            <a>全选</a>
+            <a @click="deleFun">删除选中的商品</a>
+            <a>移入关注</a>
+            <a>清理购物车 </a>
+            <span>已经选择 <a>{{num}}</a> 件商品^</span>
+            <span>总价： <a>￥{{pice}}</a> </span>
+            <div class="qjs">
+                <b>去结算</b>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            num: 0,
+            pice: 0,
+            data: {
+                check: false,
+                arr: [
+                    {
+                        id: 1,
+                        Flagshipstore: "蓝玲妃旗舰店",
+                        name: "卡姿兰（Carslan）口红 甜吻哑光口红雾面不掉色不易沾杯礼盒生日礼物送女",
+                        img: "https://img20.360buyimg.com/n0/s80x80_jfs/t1/9808/26/23926/116826/65324ea5F063c9774/4113f86ae88fe644.jpg.dpg",
+                        title: "AM18（萝卜小甜方）",
+                        unitPrice: "￥49.00",
+                        price: 49.00,
+                        he: 49.00,
+                        number: 1,
+                        che: true,
+                        quan: true,
+                    },
+                    {
+                        id: 2,
+                        Flagshipstore: "联合促销活动",
+                        name: "影腾随身wifi可移动无线wifi免插卡【无需预存】便携式4G上网卡随行网",
+                        img: "https://img20.360buyimg.com/n0/s80x80_jfs/t1/212047/40/36152/105323/64edc11fF84150e83/8e30fdc7ec210ecd.jpg.dpg",
+                        title: "升级版【充电款】绅士黑+全国通用【畅享套餐】",
+                        unitPrice: "￥81.00",
+                        price: 81.00,
+                        he: 81.00,
+                        number: 1,
+                        che: false,
+                        quan: false,
+                    },
+                    {
+                        id: 3,
+                        Flagshipstore: "佳怡服装专营店",
+                        name: "君芳雅夏季套装女2023新款韩版学院风抽绳上衣洋气背带裙两 白色上衣+黑",
+                        img: "https://img30.360buyimg.com/n0/s80x80_jfs/t1/102171/16/31039/58089/6410133dF3df06439/444175ac74de6f32.jpg.dpg",
+                        title: "白色上衣+黑色背带裙...",
+                        unitPrice: "￥109.00",
+                        price: 109.00,
+                        he: 109.00,
+                        number: 1,
+                        che: false,
+                        quan: false,
+                    },
+                ],
+            },
+            methods: {
+                addFun(index) {
+                    console.log(index);
+                    this.arr[index].number++;
+                    this.arr[index].he = Number(this.arr[index].price) * Number(this.arr[index].number);
+                    this.arr[index].che = true;
+                    this.arr[index].quan = true;
+                    for (var i = 0; i < this.arr.length; i++) {
+                        if (this.arr[i].che === false) {
+                            this.check = false;
+                        } else {
+                            this.check = true;
+                        }
+                    };
+                },
+                offFun(index) {
+                    if (this.arr[index].number > 1) {
+                        this.arr[index].number--;
+                        this.arr[index].he = Number(this.arr[index].price) * Number(this.arr[index].number);
+                    } else {
+                        alert("至少买一个");
+                    }
+                },
+                deleted(index) {
+                    if (confirm("确定删除")) {
+                        this.arr.splice(index, 1);
+                    }
+
+                },
+                change(index) {
+
+                    if (this.check === true) {
+                        this.arr[index].che = !this.arr[index].che;
+                        this.arr[index].quan = !this.arr[index].quan;
+                        this.check = false;
+                    } else {
+                        this.arr[index].che = !this.arr[index].che;
+                        this.arr[index].quan = !this.arr[index].quan;
+                        for (var i = 0; i < this.arr.length; i++) {
+                            if (this.arr[i].che === false) {
+                                this.check = false;
+                            } else {
+                                this.check = true;
+                            }
+                        };
+                    }
+                },
+                changes1() {
+                    if (this.check === true) {
+                        for (var i = 0; i < this.arr.length; i++) {
+                            this.arr[i].che = false;
+                            this.arr[i].quan = false;
+                        };
+                    } else if (this.check === false) {
+                        for (var i = 0; i < this.arr.length; i++) {
+                            this.arr[i].che = true;
+                            this.arr[i].quan = true;
+                        };
+                    }
+                    console.log(this.arr);
+                    this.check = !this.check;
+                },
+                deleFun() {
+                    if (confirm("确定删除")) {
+                        this.arr = this.arr.filter((item, index) => item.che === false);
+                        this.check = false
+                    }
+                },
+            },
+
+            computed: {
+                num: function () {
+                    //总件数
+                    var n = 0;
+                    for (var i = 0; i < this.arr.length; i++) {
+                        if (this.arr[i].che == true) {
+                            n += this.arr[i].number;
+                        }
+                    }
+                    return n
+                },
+                pice: function () {
+                    //总价格
+                    var n = 0;
+                    for (var i = 0; i < this.arr.length; i++) {
+                        if (this.arr[i].che == true) {
+                            n += this.arr[i].he;
+                        }
+                    }
+                    return n
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
+<!-- 日报
+今日学习:
+今日任务:
+今日问题: -->

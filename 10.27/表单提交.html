@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../common/jQuery/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 650px;
+            height: 100vh;
+            background-color: rgb(242, 242, 242);
+            margin: auto;
+            position: relative;
+        }
+
+        #form {
+            width: 95%;
+            height: 100vh;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            overflow: hidden;
+            margin: 10px;
+            margin: auto;
+            border: 1px solid gray;
+        }
+
+        .img img {
+            width: 100px;
+        }
+
+        .layui-layout-admin .layui-side {
+            top: 0px;
+        }
+
+        .layui-side-scroll {
+            height: 80%;
+        }
+
+        .name {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .box {
+            width: 600px;
+            margin: auto;
+        }
+
+        .box div {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .box div a img {
+            width: 100px;
+        }
+
+        .box div input[type="text"],
+        .box div input[type="date"] {
+            width: 420px;
+            height: 25px;
+            border: 1px solid rgba(100 100 100 0.5);
+            border-radius: 10px;
+            text-indent: 1em;
+        }
+
+        .box div select {
+            height: 25px;
+            border-radius: 10px;
+            width: 140px;
+        }
+
+        .box div span {
+            width: 100px;
+            display: inline-block;
+            text-align: right;
+        }
+
+        .box div textarea {
+            width: 420px;
+            height: 80px;
+            float: right;
+            margin-right: 75px;
+            border-radius: 10px;
+        }
+
+        .layui-layout-admin .layui-header {
+            left: 200px;
+        }
+
+        #btn {
+            width: 420px;
+            height: 40px;
+            background-color: darkgreen;
+            color: white;
+            margin-left: 100px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        #over {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.39);
+        }
+
+        #over .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 600px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #over p {
+            background-color: rgba(128, 128, 128, 0.197);
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            padding-left: 10px;
+        }
+
+        #over p svg {
+            float: right;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .center input[type='text'],
+        .center input[type='date'] {
+            width: 200px;
+            height: 25px;
+            border-radius: 5px;
+            text-indent: 1em;
+        }
+
+        .center div {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .center select {
+            width: 110px;
+            height: 25px;
+            border-radius: 5px;
+        }
+
+        #add {
+            width: 200px;
+            height: 30px;
+            background-color: darkgreen;
+            border: none;
+            border-radius: 5px;
+            margin-left: 150px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .input2 {
+            padding: 5px 8px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            position: absolute;
+            left: 280px;
+            bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <form id="form" class="box" action="">
+            <div>
+                <span>姓名:</span><input type="text" v-model="arr.name" id="name">
+            </div>
+            <div>
+                <span>头像:</span> <a> <img :src="arr.img" alt=""></a>
+            </div>
+            <div>
+                <span>昵称:</span> <input v-model="arr.Nickname" type="text">
+            </div>
+            <div>
+                <span>性别:</span>
+                <input type="radio" v-model="arr.sex" value="男">男
+                <input type="radio" v-model="arr.sex" value="女">女
+            </div>
+            <div>
+                <span>出生日期:</span> <input type="date" name="" v-model="arr.data" id="">
+            </div>
+            <div>
+                <span>籍贯:</span>
+                <select id="Num" v-model="prov" @change="changeCity()">
+                    <option v-for="(item,i) in items" :value="item.name">{{item.name}}</option>
+                </select>
+                <select id="city" v-model='city' @change="changeCity1">
+                    <option v-for="(item,i) in cityArr">{{item.name}}</option>
+                </select>
+                <select id="area" v-model='city1' @change="changeCity2">
+                    <option v-for="(item,i) in cityArr1">{{item}}</option>
+                </select>
+            </div>
+            <div>
+                <span>手机号码:</span> <input type="text" v-model="arr.phone">
+            </div>
+            <div>
+                <span>电子邮箱:</span> <input type="text" v-model="arr.email">
+            </div>
+            <div>
+                <span>入职日期:</span> <input type="date" v-model="arr.datas">
+            </div>
+            <div>
+                <span>自我介绍:</span> <textarea name="" id="" v-model="arr.text" cols="30" rows="10"></textarea>
+            </div>
+            <input @click.prevent="tijiao()" class="input2" type="submit" value="提交">
+        </form>
+    </div>
+    <script src="./地域.js"></script>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                prov: '',
+                city: '',
+                city1: '',
+                items: citys,
+                cityArr: [],
+                cityArr1: [],
+                arr: {
+                    name: "admin",
+                    img: "https://img0.baidu.com/it/u=1697148622,3160789974&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=938",
+                    Nickname: "一叶知秋",
+                    sex: '男', // 初始值为空，表示没有选中任何性别  
+                    data: "",
+                    sheng: '',
+                    shi: '',
+                    qu: '',
+                    phone: "",
+                    email: "",
+                    datas: "",
+                    text: "",
+                },
+                strcode: "",
+            },
+            created() {
+                this.getCode();
+            },
+            methods: {
+                changeCity() {//省切换
+                    console.log(this.prov);
+                    var me = this;
+                    var item;
+                    me.items.forEach(function (ele) {
+                        if (ele.name === me.prov) {//判断与prov是否相等，相等的表示被切换选中的省份
+                            item = ele;
+                            me.arr.sheng = me.prov
+                        }
+                    })
+                    if (item) {
+                        this.cityArr = item.city;//将选中的item的sub设置给cityArr 用于显示市
+                        this.city = item.city[0].name;
+                    }
+                },
+                changeCity1: function () {//市切换
+                    var me = this;
+                    var item;
+                    me.cityArr.forEach(function (ele) {
+                        if (ele.name === me.city) {//判断与city是否相等，相等的表示被切换选中的市
+                            item = ele;
+                            me.arr.shi = me.city
+                        }
+                    })
+                    if (item) {
+                        this.cityArr1 = item.area;//将选中的item的city设置给cityArr1 用于显示区
+                        this.city1 = item.area[0];//默认选择第一个区
+                    }
+                },
+                changeCity2: function () {//市切换
+                    var me = this;
+                    var item;
+                    me.cityArr1.forEach(function (ele) {
+                        console.log(ele);
+                        if (ele === me.city1) {//判断与city是否相等，相等的表示被切换选中的市
+                            item = ele;
+                            me.arr.qu = me.city1
+                        }
+                    })
+                },
+                tijiao() {
+                    console.log(this.arr);
+                },
+                getCode() {
+                    $.ajax({
+                        type: "GET",
+                        url: "http://47.94.4.201/index.php/index/index/getcode",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            this.strcode = data.msg
+                        },
+                    });
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>

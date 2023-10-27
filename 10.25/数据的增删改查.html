@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <script src="../common/jQuery/jquery-3.6.1.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 1000px;
+            height: 500px;
+            background-color: rgb(234, 234, 234);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            border-radius: 5px;
+            padding: 20px;
+            overflow: auto;
+            box-shadow:
+                0 1px 1px hsl(0deg 0% 0% / 0.075),
+                0 2px 2px hsl(0deg 0% 0% / 0.075),
+                0 4px 4px hsl(0deg 0% 0% / 0.075),
+                0 8px 8px hsl(0deg 0% 0% / 0.075),
+                0 16px 16px hsl(0deg 0% 0% / 0.075);
+        }
+
+        table {
+            width: 100%;
+            /* margin-left: 2.5%; */
+            border-collapse: collapse;
+            border: 1px solid rgb(228, 228, 228);
+            background-color: white;
+
+        }
+
+        #from {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 600px;
+            height: 360px;
+            text-align: center;
+            background-image: linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%);
+            border: 1px solid rgb(205, 205, 205);
+            border-radius: 8px;
+            box-shadow:
+                0 1px 1px hsl(0deg 0% 0% / 0.075),
+                0 2px 2px hsl(0deg 0% 0% / 0.075),
+                0 4px 4px hsl(0deg 0% 0% / 0.075),
+                0 8px 8px hsl(0deg 0% 0% / 0.075),
+                0 16px 16px hsl(0deg 0% 0% / 0.075);
+            display: none;
+        }
+
+        #from input {
+            padding: 8px 50px;
+            margin-top: 20px;
+        }
+
+        #from button {
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid gray;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        thead {
+            background-image: linear-gradient(0deg, #a3bded 0%, #6991c7 100%);
+            color: white;
+        }
+
+        tr {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #d4d4d4;
+            /* 或者你选择的任何颜色 */
+        }
+
+        tbody tr:hover {
+            background-color: rgb(139, 230, 230) !important;
+        }
+
+        ::-webkit-scrollbar {
+            /*隐藏滚轮*/
+            display: none;
+        }
+
+        button {
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid gray;
+        }
+
+        .b {
+            background-color: #edc1a3;
+        }
+
+        .n {
+            background-color: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+        <from id="from">
+            <h2 id="h2" style="margin-top: 20px;color: white;">{{h2}}</h2>
+            名 称 : <input type="text" v-model="name"><br>
+            链 接 : <input type="text" v-model="link"><br>
+            年 龄 : <input type="text" v-model.number="age"><br>
+            描 述 : <input type="text" v-model="describe"><br>
+            <button id="queding" @click="queding()">确定</button>
+            <button @click="quxiao()">取消</button>
+        </from>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>链接</th>
+                    <th><span @click="jiang()">↑</span>年龄<span @click="sheng()">↓</span></th>
+                    <th>描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-zhuo="index" v-for="(item,index) in arr" :key="index">
+                    <td v-model="item.id" contenteditable="true">{{item.id}}</td>
+                    <td v-model="item.name" contenteditable="true">{{item.name}}</td>
+                    <td v-model="item.link" contenteditable="true">{{item.link}}</td>
+                    <td v-model.number="item.age" contenteditable="true">{{item.age}}</td>
+                    <td v-model="item.describe" contenteditable="true">{{item.describe}}</td>
+                    <td>
+                        <button @click="shanchu(index)">删除</button>
+                        <button @click="chakan(index)">查看</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button style="margin-top: 20px;" @click="tianjia()">添加</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            directives: {
+                zhuo(val, index) {
+                    console.log(val);
+                    if (index.value % 2 == 1) {
+                        val.style.backgroundColor = "#edc1a3";
+                    } else {
+                        val.style.backgroundColor = "#ddd";
+                    }
+                },
+            },
+            data: {
+                h2: "添加数据",
+                name: "",
+                age: "",
+                link: "",
+                describe: "",
+                arr: [{
+                    id: 1,
+                    name: "哔哩哔哩",
+                    age: 14,
+                    link: "dttps://www.bilibili.com/",
+                    describe: "bilibili",
+                }, {
+                    id: 2,
+                    name: "今日头条",
+                    age: 17,
+                    link: "https://www.toutiao.com/",
+                    describe: "byiedance",
+                }, {
+                    id: 3,
+                    name: "百度",
+                    age: 16,
+                    link: "https://www.baidu.com/",
+                    describe: "baidu",
+                }, {
+                    id: 4,
+                    name: "新浪微博",
+                    age: 15,
+                    link: "https://www.weibo.com/",
+                    describe: "weibo",
+                }, {
+                    id: 5,
+                    name: "腾讯网",
+                    age: 15,
+                    link: "https://www.qq.com/",
+                    describe: "tencent",
+                },]
+            },
+            methods: {
+                quxiao() {
+                    this.name = "";
+                    this.age = "";
+                    this.link = "";
+                    this.describe = "";
+                    $("#from").css("display", "none");
+                },
+                tianjia() {
+                    this.h2 = "添加数据";
+                    $("#queding").css("display", "inline-block");
+                    $("#from").css("display", "block");
+                },
+                queding() {
+                    data1 = {
+                        id: this.arr.length + 1,
+                        name: this.name,
+                        age: this.age,
+                        link: this.link,
+                        describe: this.describe,
+                    };
+                    this.arr.push(data1);
+                    this.name = "";
+                    this.age = "";
+                    this.link = "";
+                    this.describe = "";
+                    $("#from").css("display", "none");
+                },
+                shanchu(index) {
+                    this.arr.splice(index, 1);
+                },
+                chakan(index) {
+                    $("#from").css("display", "block");
+                    this.h2 = "查看数据";
+                    this.name = this.arr[index].name;
+                    this.age = this.arr[index].age;
+                    this.link = this.arr[index].link;
+                    this.describe = this.arr[index].describe;
+                    $("#queding").css("display", "none");
+                },
+                jiang() {
+                    this.arr = this.arr.sort((a, b) => {
+                        return a.age - b.age
+                    })
+                },
+                sheng() {
+                    this.arr = this.arr.sort((a, b) => {
+                        return b.age - a.age
+                    })
+                },
+
+            },
+        });
+    </script>
+</body>
+
+</html>

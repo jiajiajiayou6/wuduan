@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../common/jQuery/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="../common/swiper/swiper-bundle.min.css">
+    <script src="../common/swiper/swiper-bundle.min.js"></script>
+    <script src="../common/vue.js"></script>
+    <script src="../common/echars/echarts.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 65vw;
+            height: 100vh;
+            margin: auto;
+        }
+
+        #box-top {
+            width: 100%;
+            height: 292px;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .swiper-pagination {
+            position: absolute;
+            bottom: 0px;
+            left: 50%;
+            Z-index: 2;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        #box-con {
+            width: 100%;
+            height: 450px;
+            margin-top: 20px;
+        }
+
+        #box-con-left {
+            float: left;
+            width: 45%;
+            height: 100%;
+            border-right: 1px solid #eeeeee;
+        }
+
+        #box-con-right {
+            float: right;
+            width: 50%;
+            height: 100%;
+        }
+
+        #box-con-left-top {
+            width: 95%;
+            height: 280px;
+        }
+
+        #box-con-left-top-li {
+            width: 100%;
+            height: 29px;
+            border-bottom: 1px solid #d3d3d3;
+        }
+
+        #box-con-left-top-h2 {
+            width: 100%;
+            height: 29px;
+            margin-top: 10px;
+            margin-bottom: 8px;
+            color: #005bac;
+        }
+
+        #box-con-left-top-img {
+            width: 100%;
+            height: 107px;
+            display: flex;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #box-con-left-top-ul li {
+            width: 100%;
+            height: 20px;
+            line-height: 20px;
+            color: #005bab;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        #box-con-left-top-ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+            color: #999999;
+            font-size: 13px;
+        }
+
+        #box-con-left-con {
+            width: 95%;
+            height: 150px;
+            margin-top: 20px;
+        }
+
+        .sp {
+            color: rgb(199, 199, 199);
+        }
+
+        #box-con-right-con {
+            width: 100%;
+            height: 395px;
+            background-color: beige;
+        }
+
+        .map {
+            width: 100%;
+            background: white !important;
+            height: 100%;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div id="box-top">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img :src="arr[0]" alt="" srcset=""></div>
+                    <div class="swiper-slide"><img :src="arr[1]" alt="" srcset=""></div>
+                    <div class="swiper-slide"><img :src="arr[2]" alt="" srcset=""></div>
+                    <div class="swiper-slide"><img :src="arr[3]" alt="" srcset=""></div>
+                    <div class="swiper-slide"><img :src="arr[4]" alt="" srcset=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div id="box-con">
+            <div id="box-con-left">
+                <div id="box-con-left-top">
+                    <div id="box-con-left-top-li"><b class="left">集团要闻</b><span class="right">更多</span></div>
+                    <div id="box-con-left-top-h2"><b>山西省委常委、太原市委书记韦韬会见王健林董事长</b></div>
+                    <div id="box-con-left-top-img">
+                        <img style="width:163px;height: 107px;"
+                            src="	https://image.wanda.cn/uploadfile/2023/1025/20231025095529489.jpg" alt="" srcset="">
+                        <span
+                            style="margin-left: 10px;font-size: 13px;color: rgb(164, 164, 164);line-height: 22px;">10月24日，山西省委常委、太原市委书记韦韬在太原会见王健林董事长并举行座谈。在太原期间，王健林董事长先后考察太原双塔公园、太原晋源晋阳湖等项目</span>
+                    </div>
+                    <ul id="box-con-left-top-ul">
+                        <li v-for="(item,index) in arr1" :key="index">
+                            <a class="left"><span class="sp"> ▪️
+                                </span>{{item.text}}</a><span class="right">{{item.time}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div id="box-con-left-con">
+                    <div id="box-con-left-top-li"><b class="left">最近动态</b><span class="right">更多</span></div>
+                    <ul id="box-con-left-top-ul">
+                        <li v-for="(item,index) in arr2" :key="index">
+                            <a class="left"><span class="sp"> ▪️
+                                </span>{{item.text}}</a><span class="right">{{item.time}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="box-con-right">
+                <div id="box-con-left-top-li" style="margin-bottom: 20px;">
+                    <b class="left">万达产业</b><span class="right">更多</span>
+                </div>
+                <div id="box-con-right-con" class=".map"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#box",
+            data: {
+                arr: [],
+                arr1: [
+                    {
+                        text: "万达酒店全面开启飞猪11·11大促",
+                        time: "10-25",
+                    },
+                    {
+                        text: "王健林董事长与山西省委常委、太原市委书记韦韬工作会",
+                        time: "10-19",
+                    },
+                    {
+                        text: "王健林董事长会见洛阳市委书记江凌",
+                        time: "10-20",
+                    },
+                ],
+                arr2: [
+                    {
+                        text: "万达酒店飞猪双11大促首日销售超1亿元 位居行业第",
+                        time: "10-27",
+                    },
+                    {
+                        text: "万达电影影抗美援朝纪念日举办特别观影活动",
+                        time: "10-27",
+                    },
+                    {
+                        text: "商管哈尔滨公司开展致敬抗美援朝主题活动",
+                        time: "10-27",
+                    },
+                    {
+                        text: "商管东区举办“致敬城市美容师”公益活动",
+                        time: "10-27",
+                    },
+                ]
+            },
+            created() {
+                this.submission();
+            },
+            methods: {
+                submission() {
+                    var sss = this
+                    $.ajax({
+                        type: "GET",
+                        url: "http://47.94.4.201/index.php/index/index/getImgList",
+                        dataType: "json",
+                        success: function (data) {
+                            let firstFiveElements = data.data.slice(0, 5);
+                            sss.arr = firstFiveElements
+                            console.log(firstFiveElements);
+                        },
+                    });
+                },
+            },
+        });
+    </script>
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: "fb8a0fe7f98d71bcdcd12fc2f652f75e",
+        }
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=12234fb3874d1b83a6084737b5166179&plugin=AMap.Driving"></script>
+    <script type="text/javascript" src="https://a.amap.com/jsapi_demos/static/demo-center/data/china-pp.js"></script>
+    <script type="text/javascript">
+        var SOC = 'CHN'
+        var colors = {};
+        var GDPSpeed = {
+            '520000': 10,//贵州
+            '540000': 10,//西藏
+            '530000': 8.5,//云南 
+            '500000': 8.5,//重庆
+            '360000': 8.5,//江西
+            '340000': 8.0,//安徽
+            '510000': 7.5,//四川
+            '350000': 8.5,//福建
+            '430000': 8.0,//湖南
+            '420000': 7.5, //湖北
+            '410000': 7.5,//河南
+            '330000': 7.0,//浙江
+            '640000': 7.5,//宁夏
+            '650000': 7.0,//新疆
+            '440000': 7.0,//广东
+            '370000': 7.0,//山东
+            '450000': 7.3,//广西
+            '630000': 7.0,//青海
+            '320000': 7.0,//江苏
+            '140000': 6.5,//山西
+            '460000': 7,// 海南
+            '310000': 6.5,//上海
+            '110000': 6.5, // 北京
+            '130000': 6.5, // 河北
+            '230000': 6, // 黑龙江
+            '220000': 6,// 吉林
+            '210000': 6.5, //辽宁
+            '150000': 6.5,//内蒙古
+            '120000': 5,// 天津
+            '620000': 6,// 甘肃
+            '610000': 8.5,// 甘肃
+            '710000': 2.64, //台湾
+            '810000': 3.0, //香港
+            '820000': 4.7 //澳门
+
+        }
+        var getColorByDGP = function (adcode) {
+            if (!colors[adcode]) {
+                var gdp = GDPSpeed[adcode];
+                if (!gdp) {
+                    colors[adcode] = 'rgb(227,227,227)'
+                } else {
+                    var r = 3;
+                    var g = 140;
+                    var b = 230;
+                    var a = gdp / 10;
+                    colors[adcode] = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+                }
+            }
+            return colors[adcode]
+        }
+
+        var disCountry = new AMap.DistrictLayer.Country({
+            zIndex: 10,
+            SOC: 'CHN',
+            depth: 1,
+            styles: {
+                'nation-stroke': '#ff0000',
+                'coastline-stroke': '#0088ff',
+                'province-stroke': 'grey',
+                'fill': function (props) {
+                    return getColorByDGP(props.adcode_pro)
+                }
+            }
+        })
+
+        var map = new AMap.Map("box-con-right-con", {
+            zooms: [4, 8],
+            center: [106.122082, 33.719192],
+            zoom: 1,
+            isHotspot: false,
+            defaultCursor: 'pointer',
+            layers: [
+                disCountry
+            ],
+            viewMode: '3D',
+        })
+        map.addControl(new AMap.Scale());
+        map.addControl(new AMap.ToolBar({ liteStyle: true }));
+        map.on('complete', function () {
+            var layer = new AMap.LabelsLayer({
+                // 开启标注避让，默认为开启，v1.4.15 新增属性
+                collision: false,
+                // 开启标注淡入动画，默认为开启，v1.4.15 新增属性
+                animation: true,
+            });
+            for (var i = 0; i < LabelsData.length; i++) {
+                var labelsMarker = new AMap.LabelMarker(LabelsData[i]);
+                layer.add(labelsMarker);
+            }
+            map.add(layer);
+        })
+
+        document.getElementsByClassName('amap-mcode')[0].innerHTML = '-GS(2021)648号'
+    </script>
+    <script language="javascript">
+        var mySwiper1 = new Swiper('.swiper', {
+            cssMode: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true, //必须设置，不然鼠标悬浮不会切换
+            },
+            mousewheel: true,
+            keyboard: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+        })
+        //鼠标滑过pagination控制swiper切换
+        for (i = 0; i < mySwiper1.pagination.bullets.length; i++) {
+            mySwiper1.pagination.bullets[i].onmouseover = function () {
+                this.click();
+            };
+        }
+    </script>
+
+</body>
+
+</html>

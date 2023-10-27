@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<style>
+    .img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+        overflow: hidden;
+        margin: 10px;
+        margin: auto;
+        border: 1px solid gray;
+    }
+
+    .img img {
+        width: 100px;
+    }
+
+    .layui-layout-admin .layui-side {
+        top: 0px;
+    }
+
+    .layui-side-scroll {
+        height: 80%;
+    }
+
+    .name {
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .box {
+        width: 600px;
+        margin: auto;
+    }
+
+    .box div {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .box div a img {
+        width: 100px;
+    }
+
+    .box div input[type="text"],
+    .box div input[type="date"] {
+        width: 420px;
+        height: 25px;
+        border: 1px solid rgba(100 100 100 0.5);
+        border-radius: 10px;
+        text-indent: 1em;
+    }
+
+    .box div select {
+        height: 25px;
+        border-radius: 10px;
+        width: 140px;
+    }
+
+    .box div span {
+        width: 100px;
+        display: inline-block;
+        text-align: right;
+    }
+
+    .box div textarea {
+        width: 420px;
+        height: 80px;
+        float: right;
+        margin-right: 75px;
+        border-radius: 10px;
+    }
+
+    .layui-layout-admin .layui-header {
+        left: 200px;
+    }
+
+    #btn {
+        width: 420px;
+        height: 40px;
+        background-color: darkgreen;
+        color: white;
+        margin-left: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: none;
+    }
+
+    #over {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.39);
+    }
+
+    #over .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 600px;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    #over p {
+        background-color: rgba(128, 128, 128, 0.197);
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+    }
+
+    #over p svg {
+        float: right;
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .center input[type='text'],
+    .center input[type='date'] {
+        width: 200px;
+        height: 25px;
+        border-radius: 5px;
+        text-indent: 1em;
+    }
+
+    .center div {
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .center select {
+        width: 110px;
+        height: 25px;
+        border-radius: 5px;
+    }
+
+    #add {
+        width: 200px;
+        height: 30px;
+        background-color: darkgreen;
+        border: none;
+        border-radius: 5px;
+        margin-left: 150px;
+        margin-top: 20px;
+        color: white;
+    }
+</style>
+
+<body>
+    <div class="box">
+
+    </div>
+    <!-- <button id="btn">添加个人中心</button> -->
+
+</body>
+<script src="地域.js">
+
+</script>
+<script>
+    function myfun(url, type, data) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                type: type,
+                data: data,
+                success: function (res) {
+                    if (res.code == 0) {
+                        resolve(res)
+                    } else {
+                        reject(res)
+                    }
+                },
+                dataType: 'json'
+            })
+        })
+    }
+
+</script>
+<script>
+    $(function () {
+        render()
+    })
+    function render() {
+        let data = myfun(`http://47.94.4.201/index.php/index/index/getmycenter?userid=888`, 'get')
+        data.then(res => {
+            let html = `
+             <div>
+                       <span>姓名:</span><input type="text" id="name" value=${res.data[0].name}>
+                    </div>
+                    <div>
+                       <span>头像:</span> <a> <img src="https://img0.baidu.com/it/u=1697148622,3160789974&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=938" alt=""></a>
+                    </div>
+                    <div>
+                       <span>昵称:</span> <input type="text" value=${res.data[0].nick}>
+                    </div>
+                    <div>
+                       <span>性别:</span><input type="radio" name="sex" id="">男
+                        <input type="radio" name="sex" id="">女
+                    </div>
+                    <div>
+                       <span>出生日期:</span> <input type="date" name="" id="" value=${res.data[0].birthdata}>
+                    </div>
+                    <div>
+                        <span>籍贯:</span>
+                        <select id="Num">
+                            <option>请选择所在省份</option>
+                        </select>
+                        <select id="city">
+                            <option>请选择所在市</option>
+                        </select>
+                        <select id="area">
+                            <option>请选择所在区</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>手机号码:</span> <input type="text" value=${res.data[0].iphone}>
+                    </div>
+                    <div>
+                        <span>电子邮箱:</span> <input type="text" value=${res.data[0].emails}>
+                    </div>
+                    <div>
+                        <span>入职日期:</span> <input type="text" value=${res.data[0].indate}>
+                    </div>
+                    <div>
+                        <span>自我介绍:</span> <textarea name="" id="" cols="30" rows="10"  >${res.data[0].mydes}</textarea>
+            `
+            $('.box').html(html)
+            cityfun()
+        })
+
+
+    }
+    function cityfun() {
+
+        //选择省份
+
+        var html1 = `<option value="-1">请选择省</option>`;
+        citys.forEach(function (item, index) {
+            html1 += `<option value="${index}">${item.name}</option>`;
+        });
+
+        $("#Num").html(html1);
+        //选择城市
+        $("#Num").change(function () {
+            var index = $(this).prop("value")
+            if (index == -1) {
+                $('#city').html(`<option value="-1">请选择市</option>`)
+                return false
+            }
+
+            let html2 = `<option value="-1">请选择市</option>`
+            citys[index].city.forEach(function (item, index) {
+                html2 += `<option value="${index}">${item.name}</option>`
+            });
+            $('#city').html(html2)
+        });
+        //选择县城
+        $("#city").change(function () {
+            let index = $(this).prop('value')
+            if (index == -1) {
+                $('#area').html(`<option value="-1">请选择区</option>`)
+                return false
+            }
+            let html3 = `<option value="-1">请选择市</option>`
+            citys[$('#Num').prop('value')].city[index].area.forEach(function (item, index) {
+                html3 += `<option value="-1">${item}</option>`
+            })
+            $('#area').html(html3)
+        })
+    }
+    //选择城市
+
+
+
+</script>
+
+</html>
